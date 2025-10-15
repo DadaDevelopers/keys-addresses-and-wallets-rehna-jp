@@ -1,0 +1,40 @@
+precious@DESKTOP-2NAL4ED:~/bitcoin/build/bin$ ./bitcoin-cli getnewaddress "personal" legacy
+14ArbDs3BhxMMnNDR9wuwLAd8PL7QqFw46
+
+precious@DESKTOP-2NAL4ED:~/bitcoin/build/bin$ ./bitcoin-cli getnewaddress "personal" bech32
+bc1qe3hule5sw77ddn68wxxs95h335e8h8ukjtc2qv
+
+precious@DESKTOP-2NAL4ED:~/bitcoin/build/bin$ ./bitcoin-cli getnewaddress "personal" bech32m
+bc1pfzc55909nnthulc9a97u70ps9acxn79hg2uvn4hk99wywpqjzj0sh4pn2v
+
+
+Hardened vs Non-Hardened Keys
+This relates to Hierarchical Deterministic (HD) wallets, where one seed can generate many keys.
+●	Non-hardened key (normal derivation)
+ The child key can be derived from a parent public key + chain code.
+   Meaning  If someone gets your public key and the chain code, they can generate     all child public keys (but not private keys).
+  Easier for watch-only wallets.
+
+●	Hardened key (secure derivation)
+ The child key requires the parent private key to generate.
+  More secure because even if someone gets your extended public key, they can’t derive hardened children.
+ Commonly used for the first levels of the key hierarchy (e.g., account level).
+
+
+Why Deterministic Wallets Are Preferred
+
+Deterministic wallets (like HD wallets) use a single master seed phrase (like your 12–24 word recovery phrase) to generate all keys.
+ Benefits:
+●	Easy backup: one seed restores all addresses
+
+●	Better privacy: automatically creates new addresses
+
+●	Consistent structure: compatible across wallets
+
+Non-deterministic wallets, on the other hand, generate random keys each time . No link between them  which means:
+●	You’d have to back up every private key individually
+
+●	Risk of losing funds if you forget to back up one key
+
+That’s why HD (deterministic) wallets are now the standard for Bitcoin wallets.
+
